@@ -1,0 +1,131 @@
+@use "sass:color";
+
+.tabs {
+  display: grid;
+  grid:
+    "tablist actions" auto
+    "panel   panel  " minmax(0, 1fr)
+    / minmax(0, 1fr) auto;
+  border: 1px solid color.mix(#000, #fff, 16%);
+
+  &__list {
+    grid-area: tablist;
+    display: flex;
+    overflow: auto;
+    scrollbar-width: none;
+  }
+
+  &__tab-container {
+    width: 164px;
+    flex: 0 0 auto;
+    display: grid;
+    grid:
+      "label close" 40px
+      / minmax(0, 1fr) auto;
+    border-right: 1px solid color.mix(#000, #fff, 16%);
+  }
+
+  &__tab {
+    grid-area: 1 / 1 / 2 / 3;
+    display: flex;
+    align-items: center;
+    border: 0;
+    padding: 0 32px 0 0;
+
+    background-color: #fff;
+    color: rgb(0 0 0 / 80%);
+    font-size: 1rem;
+
+    &:hover {
+      background-color: color.mix(#000, #fff, 8%);
+    }
+
+    &--active {
+      background-color: color.mix(#00f, #fff, 12%);
+      &:hover {
+        background-color: color.mix(#00f, #fff, 16%);
+      }
+    }
+  }
+
+  &__drag-handle {
+    flex: 0 0 auto;
+    height: 24px;
+    padding: 4px;
+  }
+
+  &__drag-icon {
+    width: 16px;
+    height: 16px;
+    color: rgb(0 0 0 / 32%);
+    cursor: grab;
+  }
+
+  &__tab-label {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  &__tab-badge {
+    flex: 0 0 auto;
+    margin: 0px -4px 16px 0px;
+    width: 12px;
+    height: 12px;
+    display: grid;
+    place-items: center;
+    border-radius: 6px;
+    background-color: #f00;
+    color: #fff;
+    font-size: 9px;
+
+    scale: 0;
+    transition: scale 200ms;
+
+    &--visible {
+      scale: 1;
+    }
+  }
+
+  &__close-button {
+    grid-area: close;
+    align-self: center;
+    margin: 4px;
+    width: 24px;
+    height: 24px;
+    border: 0;
+    padding: 0;
+    display: grid;
+    place-items: center;
+
+    background-color: transparent;
+    color: color.mix(#000, #fff, 60%);
+    border-radius: 0;
+
+    &:hover {
+      background-color: color.mix(#000, #fff, 12%);
+    }
+  }
+
+  &__close-icon {
+    width: 16px;
+    height: 16px;
+    color: color.mix(#000, #fff, 60%);
+  }
+
+  &__header-actions {
+    grid-area: actions;
+    border-left: 1px solid color.mix(#000, #fff, 16%);
+  }
+
+  &__panel {
+    grid-area: panel;
+    display: none;
+    border-top: 1px solid color.mix(#000, #fff, 16%);
+
+    &--active {
+      display: grid;
+      place-items: stretch;
+    }
+  }
+}

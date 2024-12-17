@@ -1,0 +1,73 @@
+@use "sass:color";
+
+.chat-room {
+  min-height: 0;
+  display: grid;
+  grid:
+    "banner  " auto
+    "messages" minmax(0, 1fr)
+    "form    " auto
+    / minmax(0, 1fr);
+
+  &__banner {
+    grid-area: banner;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid color.mix(#000, #fff, 12%);
+    padding: 0 8px;
+    background-color: color.mix(#000, #fff, 4%);
+    color: color.mix(#000, #fff, 60%);
+    font-style: italic;
+  }
+
+  &__messages {
+    grid-area: messages;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid color.mix(#000, #fff, 12%);
+    overflow: auto;
+    scrollbar-gutter: stable;
+  }
+
+  &__message {
+    padding: 4px 24px;
+    text-indent: -16px;
+
+    &:first-child {
+      margin-top: auto;
+    }
+
+    &:hover {
+      background-color: color.mix(#000, #fff, 8%);
+    }
+  }
+
+  &__message-form {
+    grid-area: form;
+    display: flex;
+  }
+
+  &__textfield {
+    flex: 1 0 0;
+    min-width: 0;
+    height: 40px;
+    border: 0;
+    border-right: 1px solid color.mix(#000, #fff, 12%);
+    padding: 0 8px;
+  }
+
+  &__send-button {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    border: 0;
+    padding: 0 16px;
+    background-color: #fff;
+    color: rgb(0 0 0 / 80%);
+    font-size: 1rem;
+    &:hover {
+      background-color: color.mix(#000, #fff, 12%);
+    }
+  }
+}

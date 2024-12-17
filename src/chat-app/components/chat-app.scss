@@ -1,0 +1,61 @@
+@use "sass:color";
+
+.chat-app {
+  &__tabs {
+    width: 720px;
+    height: 440px;
+  }
+
+  &__add-button {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    padding: 0;
+    display: grid;
+    place-items: center;
+
+    background-color: transparent;
+    color: color.mix(#000, #fff, 60%);
+    border-radius: 0;
+
+    anchor-name: --add-button;
+
+    &:hover {
+      background-color: color.mix(#000, #fff, 12%);
+    }
+  }
+
+  &__popover {
+    position: fixed;
+    position-anchor: --add-button;
+    inset: anchor(bottom) anchor(right) auto auto;
+    margin: 4px;
+    flex-direction: column;
+    justify-content: stretch;
+    border: 0;
+    padding: 0;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+
+    &:popover-open {
+      display: flex;
+    }
+  }
+
+  &__popover-item {
+    height: 40px;
+    border: 0;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+
+    background-color: #fff;
+    color: rgb(0 0 0 / 80%);
+    font-size: 1rem;
+    border-radius: 0;
+
+    &:hover {
+      background-color: color.mix(#000, #fff, 12%);
+    }
+  }
+}
