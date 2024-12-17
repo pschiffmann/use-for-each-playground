@@ -18,7 +18,6 @@ export default defineConfig({
         resolve(__dirname, "chat-app-non-idiomatic.html"),
       ],
     },
-    outDir: "docs",
   },
   plugins: [react()],
 });
