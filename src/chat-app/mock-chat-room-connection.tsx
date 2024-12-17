@@ -1,7 +1,15 @@
 import { useCallback, useSyncExternalStore } from "react";
 
+const counters = {
+  ctor: {} as Record<string, number>,
+  close: {} as Record<string, number>,
+};
+
 export class ChatRoomConnection {
   constructor(readonly roomId: string) {
+    counters.ctor[roomId] ??= 0;
+    counters.close[roomId] ??= 0;
+    console.log(`ctor ${roomId} called: ` + ++counters.ctor[roomId]!);
     this.#initialize();
   }
 
@@ -21,6 +29,9 @@ export class ChatRoomConnection {
 
   close() {
     if (this.#readyState === "closed") return;
+    console.log(
+      `close ${this.roomId} called: ` + ++counters.close[this.roomId]!
+    );
     this.#abortController.abort();
     this.#setReadyState("closed");
   }
