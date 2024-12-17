@@ -123,39 +123,24 @@ function AddChatRoomButton({
 }
 
 const allRoomIds = [
-  "Animals",
-  "Art",
-  "Books",
-  "Comedy",
-  "Comics",
-  "Culture",
-  "Software Dev",
-  "Education",
-  "Food",
-  "Video Games",
+  "Code Golf",
+  "Design Systems",
+  "Job Board",
+  "Learning React",
+  "React Conf",
+  "React Native",
+  "RSC Help",
+  "Side Projects",
+  "TS Wizards",
+  "WebGL",
 ];
-
-function useMultipleConnectionsComposed(roomIds: readonly string[]) {
-  return roomIds.map((roomId) => {
-    const [conn, setConn] = useState<ChatRoomConnection | null>(null);
-    useEffect(() => {
-      const connection = new ChatRoomConnection(roomId);
-      setConn(connection);
-      return () => {
-        connection.close();
-        setConn(null);
-      };
-    }, [roomId]);
-    return conn;
-  });
-}
 
 function useMultipleUnreadCounts(
   connections: readonly (ChatRoomConnection | null)[]
 ) {
   const [_, forceRender] = useState(0);
   useEffect(() => {
-    const unsubscribe = connections.map((conn, i) =>
+    const unsubscribe = connections.map((conn) =>
       conn?.subscribe("unreadCount", () => forceRender((n) => n + 1))
     );
     return () => {
