@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev-prod": "NODE_ENV=production npx vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview"
   },
